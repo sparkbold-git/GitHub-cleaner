@@ -1,12 +1,12 @@
 let repoList = [];
 
 function handleGetLabs() {
-  if (getToken() && getUsername()) {
+  if (validateToken() && getToken() && getUsername()) {
     getRepoList(1);
     addStatus("Getting Repos");
   } else {
     reportErrors(
-      `Please provide your GitHub token and username.<br /> See <a href="https://github.com/achasveachas/GitHub-cleaner/blob/master/README.md">HERE</a> for details.`
+      `Please provide your GitHub valid token and username.<br /> See <a href="https://github.com/achasveachas/GitHub-cleaner/blob/master/README.md">HERE</a> for details.`
     );
   }
 }
@@ -136,4 +136,20 @@ function getUsername() {
 function getToken() {
   // Go to https://github.com/settings/tokens and get a token.
   return document.getElementById("token").value;
+}
+
+function validateToken() {
+  const username = getUsername();
+  const token = getToken();
+  fetch(`https://api.github.com/applications/${username}/tokens/${token}`)
+    .then(res => {
+      if (res.ok) {
+        document.getElementById("progress").innerHTML = `Your token is valid`;
+        return true;
+      } else {
+        document.getElementById("progress").innerHTML = `Your token is invalid`;
+        return false;
+      }
+    })
+    .catch(er => reportErrors(er));
 }
