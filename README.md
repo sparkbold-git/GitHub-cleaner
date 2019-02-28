@@ -1,4 +1,5 @@
 # GitHub-cleaner
+#### [Link to demo](https://sparkbold.github.io/GitHub-cleaner/)
 
 - Note: this was originally supposed to make the labs private, until I realized you can't mark forked repos as private. Oh well. Was fun writing it.
 - Thankfully, GitHub came out with the ability to archive repos, which is not as good, but better than nothing I guess...
