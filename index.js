@@ -1,7 +1,7 @@
 let repoList = [];
 
 function handleGetLabs() {
-  if (validateToken() && getToken() && getUsername()) {
+  if (getToken() && getUsername()) {
     getRepoList(1);
     addStatus("Getting Repos");
   } else {
